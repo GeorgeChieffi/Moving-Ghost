@@ -1,0 +1,59 @@
+:root {
+    --ghost-color: linear-gradient(white,transparent);
+    --backround-color: indigo;
+    --desktop-ghost-width-height: 150px;
+    --mobile-ghost-width-height: 75px;
+    --elem-size: var(--desktop-ghost-width-height);
+    --desktop-ghost-eyes-width-height: calc(var(--elem-size)/5);
+}
+body{
+    background-color: var(--backround-color);
+}
+.ghost{
+    width: var(--elem-size);
+    height: var(--elem-size);
+    background: var(--ghost-color);
+    border-radius: 50% 50% 8px 8px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+    gap: calc(var(--elem-size)*.05);
+    justify-content: center;
+    align-items: center;
+
+    transition: all 2s;
+    animation: float 3.5s infinite ease;
+}
+
+.ghost::before,
+.ghost::after {
+    content: "";
+    display: block;
+    width: var(--desktop-ghost-eyes-width-height);
+    height: var(--desktop-ghost-eyes-width-height);
+    border-radius: 50%;
+    background: var(--backround-color);
+    animation: blink 1s infinate;
+
+    transition: all 2s;
+}
+
+@keyframes float {
+    0%,
+    100%{
+        transform:translate(-50%, -55%) scale(1.04);
+    }
+    50%{
+        transform:translate(-50%, -45%) scale(1);
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    :root {
+        --elem-size: var(--mobile-ghost-width-height);
+    }
+}
