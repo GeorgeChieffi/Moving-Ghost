@@ -20,4 +20,3 @@ function handleClick(event) {
 }
 
 window.onclick = handleClick;
-window.addEventListener("touchstart", handleClick)
